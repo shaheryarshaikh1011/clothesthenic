@@ -5,7 +5,7 @@ app.use(express.static(__dirname + "/public"));
 app.set("view engine","ejs");
 
 app.get("/",function(req,res){
-    res.render("home");
+    res.render("categories");
 })
 
 app.get("/reg",function(req,res)
@@ -35,6 +35,6 @@ app.use(function (req, res) {
 const host = '0.0.0.0';
 const port = process.env.PORT || 3000;
 app.listen(port, host, function() {
-    console.log("Listening to port "+port);
-	console.log("CLothesthenic has Started");
+    console.log("Listening to port "+"http://localhost:"+port);
+	console.log("CLothesthenic server has Started");
 });
