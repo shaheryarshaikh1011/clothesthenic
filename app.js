@@ -26,6 +26,11 @@ app.get("/upload",function(req,res)
 {
     res.send("Upload form");
 })
+
+app.get("/tshirts",function(req,res)
+{
+    res.render("home");
+})
 //this function get triggered when a user tries to access invalid route it return status of 404 not found and a webpage
 app.use(function (req, res) {
     res.status(404).render('404');
