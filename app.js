@@ -7,8 +7,9 @@ var LocalStrategy=require("passport-local");
 var User    =require("./models/user");
 
 
-
+var adminRoutes=require("./routes/admin");
 var indexRoutes=require("./routes/index");
+var audRoutes=require("./routes/aud")
 app.use(express.static(__dirname + "/public"));
 
 mongoose.set('useNewUrlParser', true);
@@ -44,33 +45,12 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 app.set("view engine","ejs");
 
-app.get("/",function(req,res){
-    res.render("categories");
-})
+
 app.use(indexRoutes);
-app.get("/reg",function(req,res)
-{
-    res.send("register route");
-})
+app.use(adminRoutes);
+app.use(audRoutes);
 
-app.get("/login",function(req,res)
-{
-    res.send("login route");
-})
 
-app.get("/subscribe",function(req,res){
-    res.send("offer route");
-})
-
-app.get("/upload",function(req,res)
-{
-    res.send("Upload form");
-})
-
-app.get("/tshirts",function(req,res)
-{
-    res.render("home");
-})
 //this function get triggered when a user tries to access invalid route it return status of 404 not found and a webpage
 app.use(function (req, res) {
     res.status(404).render('404');
