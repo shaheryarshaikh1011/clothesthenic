@@ -5,6 +5,7 @@ var mongoose=require("mongoose");
 var passport=require("passport");
 var LocalStrategy=require("passport-local");
 var User    =require("./models/user");
+var Product =require("./models/Product")
 
 
 var adminRoutes=require("./routes/admin");
