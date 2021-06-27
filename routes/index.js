@@ -57,9 +57,7 @@ router.get("/logout",function(req,res) {
 	res.redirect("/");
 });
 
-router.get("/sheri",function(req,res)
-{
-    res.send("sheri");
-})
+
+
 
 module.exports=router;
