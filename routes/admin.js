@@ -120,7 +120,7 @@ router.post("/subs",function(req,res) {
 })
 
 
-router.get('/api/exporttocsv', function(req, res, next) {
+router.get('/api/exporttocsv', middleware.exp,function(req, res, next) {
     var filename   = "subs.csv";
     var dataArray;
     Subs.find().lean().exec({}, function(err, products) {
