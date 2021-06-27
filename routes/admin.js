@@ -3,6 +3,9 @@ var router = express.Router();
 var torso   =require("../models/torso");
 var lower   =require("../models/lower");
 var middleware=require("../middleware");
+var csv      = require('csv-express');
+var Subs    =require("../models/subs");
+
 
 
 
@@ -87,6 +90,47 @@ router.get("/logout",function(req,res) {
 	res.redirect("/");
 });
 
+router.post("/subs",function(req,res) {
+    var name=req.body.name;
+    var age=req.body.age;
+    var state=req.body.state;
+    var city=req.body.city;
+    var email=req.body.email;
+    var phno=req.body.phno;
+    var insta=req.body.insta;
+   
+	
+	var newSubs={name:name,age:age,state:state,city:city,email:email,phno:phno,insta:insta};
+    console.log(newSubs);
 
+	Subs.create(newSubs,function(err,newlyCreated) {
+		// body...if(err)
+		if(err)
+		{
+			console.log(err);
+		}
+		else
+		{	
+			console.log(newlyCreated);
+			res.redirect("/subs");
+		}
+	})
+	
+	// body...
+})
+
+
+router.get('/exporttocsv', function(req, res, next) {
+    var filename   = "subs.csv";
+    var dataArray;
+    Subs.find().lean().exec({}, function(err, products) {
+        if (err) res.send(err);
+        
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'text/csv');
+        res.setHeader("Content-Disposition", 'attachment; filename='+filename);
+        res.csv(products, true);
+    });
+ });
 
 module.exports=router;

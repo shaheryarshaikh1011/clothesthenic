@@ -53,4 +53,9 @@ router.get("/lower",function(req,res) {
 	// body...
 })
 
+
+router.get("/subs",function(req,res)
+{
+    res.render("user.ejs")
+})
 module.exports=router;
