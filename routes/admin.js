@@ -2,17 +2,18 @@ var express = require("express");
 var router = express.Router();
 var torso   =require("../models/torso");
 var lower   =require("../models/lower");
+var middleware=require("../middleware");
 
 
 
 
-router.get("/torsoform",function(req,res)
+router.get("/torsoform",middleware.isLoggedIn,function(req,res)
 {
     res.render("torsoform");
 })
 
 
-router.get("/lowerform",function(req,res)
+router.get("/lowerform",middleware.isLoggedIn,function(req,res)
 {
     res.render("lowerform");
 })
@@ -79,7 +80,12 @@ router.get("/data",function(req,res)
     res.send("i am user data route")
 })
 
-
+//logout route
+router.get("/logout",function(req,res) {
+	req.logout();
+	
+	res.redirect("/");
+});
 
 
 
