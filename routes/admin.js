@@ -68,9 +68,9 @@ router.post("/torsoform",function(req,res) {
 
 
 
-router.get("/admin",function(req,res)
+router.get("/admin",middleware.isLoggedIn,function(req,res)
 {
-    res.send("i am admin route");
+    res.render("admin");
 })
 
 router.get("/posts",function(req,res)

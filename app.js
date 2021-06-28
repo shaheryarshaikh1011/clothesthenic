@@ -44,6 +44,12 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use(bodyParser.urlencoded({extended:true}));
+//using passport local for getting currentuser details
+app.use(function(req,res,next) {
+	//save user info
+	res.locals.currentUser=req.user;
+	next();
+});
 
 app.set("view engine","ejs");
 

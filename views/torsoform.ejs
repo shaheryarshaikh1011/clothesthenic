@@ -26,12 +26,16 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
               
-              <li><a href="/login">Login</a></li>
-              <li><a href="/register">Signup</a></li>
-            
+              <% if(!currentUser){%>
+                <li><a href="/login">Login</a></li>
+               <%}else{%>     
+                <li><a href="/api/exporttocsv">CSV</a></li>
+                <li><a href="/torsoform">TorsoForm</a></li>
+                <li><a href="/lowerform">lowerForm</a></li>
+                <li><a href="/logout">logout</a></li>
+              </ul>
               
-              <li><a href="/logout">logout</a></li>
-            </ul>
+               <%}%>
             
     
           </div><!-- /.navbar-collapse -->
