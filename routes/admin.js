@@ -123,9 +123,8 @@ router.post("/subs",function(req,res) {
 router.get('/api/exporttocsv', middleware.exp,function(req, res, next) {
     var filename   = "subs.csv";
     var dataArray;
-    Subs.find().lean().exec({}, function(err, products) {
+    Subs.find().lean().select('-__v  -_id').exec({}, function(err, products) {
         if (err) res.send(err);
-        
         res.statusCode = 200;
         res.setHeader('Content-Type', 'text/csv');
         res.setHeader("Content-Disposition", 'attachment; filename='+filename);
